@@ -1,1 +1,6 @@
-com.GomezJuan.LopezJavier
+com.gomez_juan_lopez_javier
+com.gomez_juan_lopez_javier.commands
+com.gomez_juan_lopez_javier.instructions
+com.gomez_juan_lopez_javier.instructions.arithmetics
+com.gomez_juan_lopez_javier.instructions.one_paramater
+com.gomez_juan_lopez_javier.instructions.one_paramater.conditional_jumps
