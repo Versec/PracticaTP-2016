@@ -9,7 +9,7 @@ import com.gomez_juan_lopez_javier.commands.*;
  * 
  * @author Juan Gomez 
  * @author Javier Lopez
- * @version 2.0
+ * @version 3.0
  */
 
 public class CommandParser {
@@ -18,7 +18,7 @@ public class CommandParser {
 	 */
 	private final static Command[] commands = {new Help (), new Reset(),
 			new Quit(), new AddByteCodeProgram(),
-			new Replace(), new Run()};
+			new Replace(), new Run(), new LoadFich()};
 	
 	/**
 	 * A partir de un {@link String}, genera un objeto {@link Command}. Si el comando no existe, o no tiene parametros validos
