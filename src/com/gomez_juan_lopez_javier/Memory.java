@@ -7,7 +7,7 @@ package com.gomez_juan_lopez_javier;
  * 
  * @author Juan Gomez
  * @author Javier Lopez
- * @version 2.0
+ * @version 3.0
  */
 
 public class Memory {

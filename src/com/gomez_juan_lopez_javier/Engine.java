@@ -1,5 +1,8 @@
 package com.gomez_juan_lopez_javier;
 
+import java.io.File;
+import java.util.Scanner;
+
 /**
  * Clase Engine:
  * 
@@ -7,7 +10,7 @@ package com.gomez_juan_lopez_javier;
  * 
  * @author Juan Gomez 
  * @author Javier Lopez
- * @version 2.0
+ * @version 3.0
  */
 
 public class Engine {
@@ -35,6 +38,18 @@ public class Engine {
 	 * Objeto {@link java.util.Scanner} utilizado para leer los comandos introducidos por el usuario.
 	 */
 	private java.util.Scanner sc;
+	/**
+	 * Objeto {@link SourceProgram} utilizado para almacenar el programa fuente que se carga del fichero.
+	 */
+	private SourceProgram sProgram;
+	/**
+	 * Objeto {@link ParsedProgram} para almacenar el programa parseado.
+	 */
+	private ParsedProgram parsedProgram;
+	/**
+	 * Objeto {@link ByteCodeProgram} para almacenar el programa Bytecode.
+	 */
+	private ByteCodeProgram bytecodeProgram;
 	
 	/**
 	 * Constructor por defecto de {@link Engine}.
@@ -187,5 +202,15 @@ public class Engine {
 				end = true;
 		}
 		return true;
+	}
+	
+	public void ejecutarCompile(){
+		
+	}
+	
+	public boolean ejecutarLoad(){
+		File fichero = new File("fichero.txt");
+		
+		return false;
 	}
 }
