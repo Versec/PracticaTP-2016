@@ -9,19 +9,25 @@ import com.gomez_juan_lopez_javier.Engine;
 
 public class LoadFich extends Command {
 
+	private String fileName;
+	
 	public LoadFich() {
 		super();
 	}
-
+	
+	public LoadFich(String fileName){
+		this.fileName = fileName;
+	}
+	
 	@Override
 	public boolean execute(Engine engine) {
-		return (engine.ejecutarLoad());
+		return (engine.ejecutarLoad(this.fileName));
 	}
 
 	@Override
 	public Command parse(String... line) {
-		if (line.length==1 && line[0].equalsIgnoreCase("LOAD")){
-			return new LoadFich();
+		if (line.length==2 && line[0].equalsIgnoreCase("LOAD")&& line[1].matches(".+")){
+			return new LoadFich(line[1]);
 		}
 		else 
 			return null;
@@ -29,7 +35,7 @@ public class LoadFich extends Command {
 
 	@Override
 	public String textHelp() {
-		return "LOAD: Carga el fichero como programa fuente. No realiza ningún tipo de comprobación sintáctica."
+		return "LOAD FICH: Carga el fichero FICH como programa fuente. No realiza ningún tipo de comprobación sintáctica."
 				+ System.getProperty("line.separator");
 	}
 

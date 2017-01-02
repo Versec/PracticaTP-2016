@@ -1,6 +1,7 @@
 package com.gomez_juan_lopez_javier;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
@@ -208,9 +209,17 @@ public class Engine {
 		
 	}
 	
-	public boolean ejecutarLoad(){
-		File fichero = new File("fichero.txt");
-		
+	public boolean ejecutarLoad(String fileName){	
+		try {
+			Scanner sc = new Scanner(new File (fileName));
+			return true;
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally{
+			//sc.close();
+		}
 		return false;
 	}
 }
