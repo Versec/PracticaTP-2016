@@ -209,16 +209,29 @@ public class Engine {
 		
 	}
 	
+	/**
+	 * Metodo para cargar el programa fuente de un fichero.
+	 * 
+	 * @param fileName
+	 * @return true si se ha cargado correctamente. False en caso contrario.
+	 */
 	public boolean ejecutarLoad(String fileName){	
 		try {
+			System.out.println("Comienza la ejecucion de LOAD " + fileName);
 			Scanner sc = new Scanner(new File (fileName));
+			String lineProgram = sc.nextLine();
+			
+			while(lineProgram != "end" || sProgram.canWrite()){
+				sProgram.writeNextInstruction(lineProgram);
+				lineProgram = sc.nextLine();
+			}
 			return true;
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		finally{
-			//sc.close();
+			sc.close();
 		}
 		return false;
 	}

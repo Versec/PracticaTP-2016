@@ -102,13 +102,12 @@ public class ByteCodeProgram {
 	}
 	
 	/**
-	 * Constructor para crear un nuevo programa. El tanaño maximo del program esta definido por
+	 * Constructor para crear un nuevo programa. El tamaño maximo del program esta definido por
 	 * {@link ByteCodeProgram#MAX_PROGRAM_SIZE}.
 	 */
 	public void eraseAll() {
 		this.program = new ByteCode[MAX_PROGRAM_SIZE];
 		this.programSize = 0;
 	}
-
 }
 
