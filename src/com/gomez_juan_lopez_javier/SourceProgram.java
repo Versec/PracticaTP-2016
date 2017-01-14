@@ -14,25 +14,26 @@ public class SourceProgram {
 	/**
 	 * Dimension maxima del programa.
 	 */
-	private final int MAX_PROGRAM_SIZE = 10;
+	private final int MAX_PROGRAM_SIZE = 1;
+	
+	
 	/**
 	 * Programa fuente con la clase String.
 	 */
 	private String[] sProgram;
-	/**
-	 * Programa fuente con la clase SourceProgram.
-	 */
-	private SourceProgram[] program;
+	
+	
 	/**
 	 * Numero de instrucciones que ocupa actualmente el programa.
 	 */
 	private int programSize;
 	
+	
 	/**
 	 * Constructor para crear la clase {@link SourceProgram} en cada posicion del programa.
 	 */
 	public SourceProgram(){
-		this.program = new SourceProgram [MAX_PROGRAM_SIZE];
+		this.sProgram = new String [MAX_PROGRAM_SIZE];
 		this.programSize = 0;
 	}
 	
@@ -52,6 +53,7 @@ public class SourceProgram {
 			return false;
 	}
 	
+	
 	/**
 	 * Metodo que devuelve la dimension actual del programa fuente{@link programSize}.
 	 * 
@@ -60,6 +62,8 @@ public class SourceProgram {
 	public int getProgramSize(){
 		return programSize;
 	}
+	
+	
 	/**
 	 * Metodo que comprueba si se puede escribir la siguiente instruccion.
 	 * @return True si se puede escribir la siguiente instruccion. False en caso contrario.
