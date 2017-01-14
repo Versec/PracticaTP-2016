@@ -88,7 +88,7 @@ public class Engine {
 				System.out.println();
 			}
 		}
-		sc.close();
+		//sc.close();
 	}
 	
 	/**
@@ -215,23 +215,28 @@ public class Engine {
 	 * @param fileName
 	 * @return true si se ha cargado correctamente. False en caso contrario.
 	 */
-	public boolean ejecutarLoad(String fileName){	
+	public boolean ejecutarLoad(String fileName){
+		Scanner sourceScanner = null;
 		try {
 			System.out.println("Comienza la ejecucion de LOAD " + fileName);
-			Scanner sc = new Scanner(new File (fileName));
-			String lineProgram = sc.nextLine();
+			sProgram = new SourceProgram();
+			sourceScanner = new Scanner(new File (fileName));
+			String lineProgram = "";
 			
-			while(lineProgram != "end" || sProgram.canWrite()){
-				sProgram.writeNextInstruction(lineProgram);
-				lineProgram = sc.nextLine();
+			while(sc.hasNextLine()){
+				lineProgram = sourceScanner.nextLine();
+				if (!sProgram.writeNextInstruction(lineProgram)){
+					break;
+				}
 			}
 			return true;
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Archivo no encontrado. Asegurese de que ha escrito el nombre del archivo de forma correcta y con su terminacion (.txt)");
+			//e.printStackTrace();
 		}
 		finally{
-			sc.close();
+		if  (sourceScanner!= null)
+				sourceScanner.close();
 		}
 		return false;
 	}
