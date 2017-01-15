@@ -1,7 +1,7 @@
-package com.gomez_juan_lopez_javier.instructions.arithmetics;
+package com.gomez_juan_lopez_javier.bytecode.arithmetics;
 
-import com.gomez_juan_lopez_javier.ByteCode;
 import com.gomez_juan_lopez_javier.CPU;
+import com.gomez_juan_lopez_javier.bytecode.ByteCode;
 
 /**
  * Clase para representar los comandos relacionados con la aritmetica.

@@ -1,6 +1,5 @@
-package com.gomez_juan_lopez_javier.instructions;
+package com.gomez_juan_lopez_javier.bytecode;
 
-import com.gomez_juan_lopez_javier.ByteCode;
 import com.gomez_juan_lopez_javier.CPU;
 
 /**

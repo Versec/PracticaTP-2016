@@ -1,6 +1,6 @@
 package com.gomez_juan_lopez_javier;
 
-import com.gomez_juan_lopez_javier.instructions.one_paramater.ByteCodeOneParameter;
+import com.gomez_juan_lopez_javier.bytecode.one_paramater.ByteCodeOneParameter;
 
 /**
  * Clase CPU:

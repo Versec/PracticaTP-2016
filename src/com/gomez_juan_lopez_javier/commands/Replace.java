@@ -1,6 +1,5 @@
 package com.gomez_juan_lopez_javier.commands;
 
-import com.gomez_juan_lopez_javier.Command;
 import com.gomez_juan_lopez_javier.Engine;
 
 /**
@@ -8,7 +7,7 @@ import com.gomez_juan_lopez_javier.Engine;
  * introducida por el usuario. 
  */
 
-public class Replace extends Command{
+public class Replace implements Command {
 	
 	private int instToReplace;
 	

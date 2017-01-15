@@ -1,6 +1,6 @@
-package com.gomez_juan_lopez_javier.instructions.one_paramater.conditional_jumps;
+package com.gomez_juan_lopez_javier.bytecode.one_paramater.conditional_jumps;
 
-import com.gomez_juan_lopez_javier.ByteCode;
+import com.gomez_juan_lopez_javier.bytecode.ByteCode;
 
 /**
  * Clase que implementa la instruccion IfLe. Compara los dos ultimos numeros en la pila de operandos

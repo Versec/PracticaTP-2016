@@ -1,4 +1,8 @@
-package com.gomez_juan_lopez_javier;
+package com.gomez_juan_lopez_javier.commands;
+
+import com.gomez_juan_lopez_javier.Engine;
+import com.gomez_juan_lopez_javier.exceptions.ArrayException;
+import com.gomez_juan_lopez_javier.exceptions.LexicalAnalysisException;
 
 /**
  * Clase abstracta Command:
@@ -10,15 +14,17 @@ package com.gomez_juan_lopez_javier;
  * @version 3.0
  */
 
-public abstract class Command {
+public interface Command {
 	
 	/**
 	 * Hace que el motor {@link Engine} ejecute los comandos.
 	 * 
 	 * @param engine {@link Engine}
 	 * @return true si ejecuta correctamente un comando, false si no lo ejecuta correctamente.
+	 * @throws ArrayException 
+	 * @throws LexicalAnalysisException 
 	 */
-	abstract public boolean execute(Engine engine);
+	boolean execute(Engine engine) throws LexicalAnalysisException, ArrayException;
 
 	/**
 	 * Crea un comando {@link Command} a partir del {@link String} line. En caso de que la instruccion 
@@ -28,11 +34,11 @@ public abstract class Command {
 	 * 
 	 * @return El comando {@link Command} y su posible parametro.
 	 */
-	public abstract Command parse(String... line);
+	Command parse(String... line);
 	
 	/**
 	 * Almacena en un {@link String} el texto de ayuda de cada instruccion.
 	 * @return El texto de ayuda en {@link String}.
 	 */
-	public abstract String textHelp();
+	String textHelp();
 }

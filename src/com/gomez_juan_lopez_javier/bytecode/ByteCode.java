@@ -1,4 +1,6 @@
-package com.gomez_juan_lopez_javier;
+package com.gomez_juan_lopez_javier.bytecode;
+
+import com.gomez_juan_lopez_javier.CPU;
 
 /**
  * Clase abstracta Bytecode:

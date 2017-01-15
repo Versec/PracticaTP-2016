@@ -1,5 +1,7 @@
 package com.gomez_juan_lopez_javier;
 
+import com.gomez_juan_lopez_javier.bytecode.ByteCode;
+
 /**
  * Clase ByteCodeProgram:
  * 

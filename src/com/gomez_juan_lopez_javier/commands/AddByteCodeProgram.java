@@ -1,6 +1,5 @@
 package com.gomez_juan_lopez_javier.commands;
 
-import com.gomez_juan_lopez_javier.Command;
 import com.gomez_juan_lopez_javier.Engine;
 
 /**
@@ -8,7 +7,7 @@ import com.gomez_juan_lopez_javier.Engine;
  * escritas por el usuario.
  */
 
-public class AddByteCodeProgram extends Command{
+public class AddByteCodeProgram implements Command {
 
 	public AddByteCodeProgram() {
 		super();

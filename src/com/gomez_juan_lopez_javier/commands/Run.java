@@ -1,13 +1,12 @@
 package com.gomez_juan_lopez_javier.commands;
 
-import com.gomez_juan_lopez_javier.Command;
 import com.gomez_juan_lopez_javier.Engine;
 
 /**
  * Clase que implementa el comando run. Este comando ejecutara el programa almacenado.
  */
 
-public class Run extends Command{
+public class Run implements Command {
 
 	public Run() {
 		super();

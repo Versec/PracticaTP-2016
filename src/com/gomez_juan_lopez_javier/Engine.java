@@ -4,6 +4,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import com.gomez_juan_lopez_javier.bytecode.ByteCode;
+import com.gomez_juan_lopez_javier.commands.Command;
+import com.gomez_juan_lopez_javier.exceptions.ArrayException;
+import com.gomez_juan_lopez_javier.exceptions.LexicalAnalysisException;
+
 /**
  * Clase Engine:
  * 
@@ -62,8 +67,10 @@ public class Engine {
 	/**
 	 * Inicia el motor {@link Engine} y lee los comandos introducidos y los parsea convenientemente. Si el comando
 	 * introducido no es correcto se mostrara un error.
+	 * @throws ArrayException 
+	 * @throws LexicalAnalysisException 
 	 */
-	public void start (){
+	public void start () {
 		this.program = new ByteCodeProgram();
 		this.cpu = new CPU();
 		sc = new java.util.Scanner(System.in); 
@@ -76,10 +83,11 @@ public class Engine {
 			comando = CommandParser.parse(cadenaComando);
 			
 			if (comando != null) {
-				boolean exec = comando.execute(this);
-				
-				if (!exec) {
+				try {
+					comando.execute(this);
+				} catch (LexicalAnalysisException | ArrayException e) {
 					System.out.println("Ha ocurrido un error.");
+					//e.printStackTrace();
 				}
 			}
 			else {
@@ -88,7 +96,7 @@ public class Engine {
 				System.out.println();
 			}
 		}
-		//sc.close();
+		sc.close();
 	}
 	
 	/**
@@ -215,7 +223,7 @@ public class Engine {
 	 * @param fileName
 	 * @return true si se ha cargado correctamente. False en caso contrario.
 	 */
-	public boolean ejecutarLoad(String fileName){
+	public boolean ejecutarLoad(String fileName) throws ArrayException {
 		Scanner sourceScanner = null;
 		try {
 			System.out.println("Comienza la ejecucion de LOAD " + fileName);
@@ -223,21 +231,20 @@ public class Engine {
 			sourceScanner = new Scanner(new File (fileName));
 			String lineProgram = "";
 			
-			while(sc.hasNextLine()){
+			while(sourceScanner.hasNextLine()){
 				lineProgram = sourceScanner.nextLine();
-				if (!sProgram.writeNextInstruction(lineProgram)){
-					break;
+				if(!sProgram.writeNextInstruction(lineProgram)){
+					throw new ArrayException();	
 				}
 			}
-			return true;
 		} catch (FileNotFoundException e) {
-			System.out.println("Archivo no encontrado. Asegurese de que ha escrito el nombre del archivo de forma correcta y con su terminacion (.txt)");
+			System.out.println("Archivo no encontrado. Asegurese de que ha escrito el nombre del archivo de forma correcta y con su terminacion (.txt) \n");
 			//e.printStackTrace();
 		}
 		finally{
 		if  (sourceScanner!= null)
 				sourceScanner.close();
 		}
-		return false;
+		return true;
 	}
 }

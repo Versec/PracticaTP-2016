@@ -1,13 +1,12 @@
 package com.gomez_juan_lopez_javier.commands;
 
-import com.gomez_juan_lopez_javier.Command;
 import com.gomez_juan_lopez_javier.Engine;
 
 /**
  * Clase que implementa el comando Quit. Este comando finaliza el programa.
  */
 
-public class Quit  extends Command{
+public class Quit implements Command{
 
 	public Quit() {
 		super();

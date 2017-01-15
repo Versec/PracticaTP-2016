@@ -1,13 +1,13 @@
 package com.gomez_juan_lopez_javier.commands;
 
-import com.gomez_juan_lopez_javier.Command;
 import com.gomez_juan_lopez_javier.Engine;
+import com.gomez_juan_lopez_javier.exceptions.ArrayException;
 
 /**
  * Representa el comando load. Se encarga de cargar un fichero.
  */
 
-public class LoadFich extends Command {
+public class LoadFich implements Command {
 
 	private String fileName;
 	
@@ -20,7 +20,7 @@ public class LoadFich extends Command {
 	}
 	
 	@Override
-	public boolean execute(Engine engine) {
+	public boolean execute(Engine engine) throws ArrayException {
 		return (engine.ejecutarLoad(this.fileName));
 	}
 

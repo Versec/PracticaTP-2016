@@ -1,6 +1,6 @@
-package com.gomez_juan_lopez_javier.instructions.one_paramater;
+package com.gomez_juan_lopez_javier.bytecode.one_paramater;
 
-import com.gomez_juan_lopez_javier.ByteCode;
+import com.gomez_juan_lopez_javier.bytecode.ByteCode;
 
 /**
  * Clase que representa las instrucciones con un parametro.
