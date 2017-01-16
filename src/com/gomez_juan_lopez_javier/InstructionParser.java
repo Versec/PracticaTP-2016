@@ -10,7 +10,7 @@ public class InstructionParser {
 	
 	public static Instruction parse(String instruction, LexicalParser lexParser){
 		Instruction instr = null;
-		String words[] = instruction.split(" ", 3);
+		String words[] = instruction.split(" ", 5);
 		for (int i = 0; i < instructions.length; i++) {
 			instr = instructions[i].lexParse(words, lexParser);
 			if(instr != null)
