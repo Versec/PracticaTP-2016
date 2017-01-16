@@ -51,7 +51,7 @@ public class Engine {
 	/**
 	 * Objeto {@link ParsedProgram} para almacenar el programa parseado.
 	 */
-	private ParsedProgram parsedProgram;
+	private ParsedProgram pProgram;
 	/**
 	 * Objeto {@link ByteCodeProgram} para almacenar el programa Bytecode.
 	 */
@@ -213,10 +213,27 @@ public class Engine {
 		return true;
 	}
 	
-	public void ejecutarCompile(){
-		
+	public void ejecutarCompile() throws LexicalAnalysisException{
+		try {
+			this.LexicalAnalysis();
+			this.generateByteCode();
+		} catch (LexicalAnalysisException | ArrayException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
+	private void generateByteCode () throws ArrayException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void LexicalAnalysis() throws LexicalAnalysisException {
+		pProgram = new ParsedProgram();
+		LexicalParser lParser = new LexicalParser(sProgram);
+		lParser.lexicalParser(pProgram, "end");
+	}
+
 	/**
 	 * Metodo para cargar el programa fuente de un fichero.
 	 * 

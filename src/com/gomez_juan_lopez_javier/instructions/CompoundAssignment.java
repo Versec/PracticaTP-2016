@@ -2,6 +2,7 @@ package com.gomez_juan_lopez_javier.instructions;
 
 import com.gomez_juan_lopez_javier.LexicalParser;
 import com.gomez_juan_lopez_javier.exceptions.ArrayException;
+import com.gomez_juan_lopez_javier.terms.Term;
 
 /**
  * Clase CompoundAssignment:
@@ -14,6 +15,10 @@ import com.gomez_juan_lopez_javier.exceptions.ArrayException;
  */
 
 public class CompoundAssignment implements Instruction{
+	
+	private String varName;
+	private String operator;
+	private Term term1, term2;
 
 	public CompoundAssignment() {
 		// TODO Auto-generated constructor stub
