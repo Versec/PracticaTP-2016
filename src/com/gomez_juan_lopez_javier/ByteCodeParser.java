@@ -1,9 +1,9 @@
 package com.gomez_juan_lopez_javier;
 
-import com.gomez_juan_lopez_javier.instructions.one_paramater.*;
-import com.gomez_juan_lopez_javier.instructions.one_paramater.conditional_jumps.*;
-import com.gomez_juan_lopez_javier.instructions.*;
-import com.gomez_juan_lopez_javier.instructions.arithmetics.*;
+import com.gomez_juan_lopez_javier.bytecode.*;
+import com.gomez_juan_lopez_javier.bytecode.arithmetics.*;
+import com.gomez_juan_lopez_javier.bytecode.one_paramater.*;
+import com.gomez_juan_lopez_javier.bytecode.one_paramater.conditional_jumps.*;
 
 /**
  * Clase ByteCodeParser:

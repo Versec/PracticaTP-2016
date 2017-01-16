@@ -16,9 +16,8 @@ public class CommandParser {
 	/**
 	 * Array constante de todos los comandos de tipo {@link Command}.
 	 */
-	private final static Command[] commands = {new Help (), new Reset(),
-			new Quit(), new AddByteCodeProgram(),
-			new Replace(), new Run(), new LoadFich()};
+	private final static Command[] commands = {new Help (), new Reset(), new Compile(),
+			new Quit(), new Replace(), new Run(), new LoadFich()};
 	
 	/**
 	 * A partir de un {@link String}, genera un objeto {@link Command}. Si el comando no existe, o no tiene parametros validos

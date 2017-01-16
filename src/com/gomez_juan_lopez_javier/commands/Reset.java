@@ -1,13 +1,12 @@
 package com.gomez_juan_lopez_javier.commands;
 
-import com.gomez_juan_lopez_javier.Command;
 import com.gomez_juan_lopez_javier.Engine;
 
 /**
  * Clase que implementa el comando reset. Borrara el programa almacenado.
  */
 
-public class Reset extends Command {
+public class Reset implements Command {
 
 	public Reset() {
 		super();

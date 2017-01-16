@@ -14,7 +14,7 @@ public class SourceProgram {
 	/**
 	 * Dimension maxima del programa.
 	 */
-	private final int MAX_PROGRAM_SIZE = 1;
+	private static final int MAX_PROGRAM_SIZE = 10;
 	
 	
 	/**
@@ -86,5 +86,14 @@ public class SourceProgram {
 			s = s+ i +": " +this.sProgram[i].toString()+ "\n";
 		}
 		return s;
+	}
+	
+	public int getNumeroInstrucciones(){
+		
+		return 0;
+	}
+
+	public String getInstructionAt(int programCounter) {
+		return this.sProgram[programCounter];
 	}
 }

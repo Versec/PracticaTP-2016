@@ -1,13 +1,12 @@
 package com.gomez_juan_lopez_javier.commands;
 
-import com.gomez_juan_lopez_javier.Command;
 import com.gomez_juan_lopez_javier.Engine;
 
 /**
  * Esta clase implementa el comando Help. Mostrara la ayuda de los comandos.
  */
 
-public class Help extends Command{
+public class Help implements Command{
 
 	
 	public Help() {
