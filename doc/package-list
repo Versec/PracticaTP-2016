@@ -1,6 +1,10 @@
 com.gomez_juan_lopez_javier
+com.gomez_juan_lopez_javier.bytecode
+com.gomez_juan_lopez_javier.bytecode.arithmetics
+com.gomez_juan_lopez_javier.bytecode.one_paramater
+com.gomez_juan_lopez_javier.bytecode.one_paramater.conditional_jumps
 com.gomez_juan_lopez_javier.commands
+com.gomez_juan_lopez_javier.exceptions
 com.gomez_juan_lopez_javier.instructions
-com.gomez_juan_lopez_javier.instructions.arithmetics
-com.gomez_juan_lopez_javier.instructions.one_paramater
-com.gomez_juan_lopez_javier.instructions.one_paramater.conditional_jumps
+com.gomez_juan_lopez_javier.instructions.conditions
+com.gomez_juan_lopez_javier.terms
