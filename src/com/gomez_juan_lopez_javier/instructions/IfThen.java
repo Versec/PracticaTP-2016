@@ -33,7 +33,7 @@ public class IfThen implements Instruction {
 
 	@Override
 	public Instruction lexParse(String[] words, LexicalParser lexParser) throws LexicalAnalysisException {
-		if(words.length != 2)
+		if(words.length != 4)
 			return null;
 		Condition cond;
 		cond = ConditionParser.parse(words, lexParser);

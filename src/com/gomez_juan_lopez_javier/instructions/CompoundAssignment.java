@@ -39,7 +39,8 @@ public class CompoundAssignment implements Instruction{
 		if (!words[1].equals("="))
 			return null;
 		
-		if(!words[3].equals("+|-|*|/"))
+		if(!words[3].equals("+") && !words[3].equals("-") 
+				&& !words[3].equals("*") && !words[3].equals("/"))
 			return null;
 		
 		Term rhs1 = TermParser.parse(words[2]);
