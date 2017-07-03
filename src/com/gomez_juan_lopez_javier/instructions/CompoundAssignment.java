@@ -49,7 +49,7 @@ public class CompoundAssignment implements Instruction{
 		Term rhs2 = TermParser.parse(words[4]);
 		if (rhs2 == null)
 			return null;
-		lexParser.increaseProgramCounter();
+		//lexParser.increaseProgramCounter();
 		return new CompoundAssignment (words[0], rhs1, rhs2, words[3]);
 	}
 

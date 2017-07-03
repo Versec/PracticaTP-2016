@@ -1,0 +1,6 @@
+while 0 < 1
+	x = 3
+endwhile
+write r
+return
+end

@@ -21,8 +21,11 @@ public class Return implements Instruction {
 
 	@Override
 	public Instruction lexParse(String[] words, LexicalParser lexParser) {
-		// TODO Auto-generated method stub
-		return null;
+		if (words.length != 1)
+			return null;
+		if (!words[0].equalsIgnoreCase("return"))
+			return null;
+		return new Return();
 	}
 
 	@Override

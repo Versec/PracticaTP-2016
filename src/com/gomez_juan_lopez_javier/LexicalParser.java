@@ -24,15 +24,19 @@ public class LexicalParser {
 	}
 	
 	public void lexicalParser(ParsedProgram pProgram, String stopKey) throws LexicalAnalysisException {
-		boolean stop;
-		while(programCounter < sProgram.getProgramSize()){
+		boolean stop = false;;
+		while(programCounter < sProgram.getProgramSize() && !stop){
 			String line = sProgram.getInstructionAt(programCounter);
-			if(line.equalsIgnoreCase(stopKey))
+			if(line.equalsIgnoreCase(stopKey)){
+				increaseProgramCounter();
 				stop = true;
+			}
 			else {
+				System.out.println("PC: " + this.programCounter);
+				increaseProgramCounter();
 				Instruction instr = InstructionParser.parse(line, this);
 				pProgram.addInstruction(instr);
-				programCounter++;
+			
 			}
 		}
 	}

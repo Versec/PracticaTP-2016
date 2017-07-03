@@ -39,7 +39,7 @@ public class SimpleAssignment implements Instruction {
 		Term rhs = TermParser.parse(words[2]);
 		if (rhs == null)
 			return null;
-		lexParser.increaseProgramCounter();
+		//lexParser.increaseProgramCounter();
 		return new SimpleAssignment (words[0], rhs);
 	}
 

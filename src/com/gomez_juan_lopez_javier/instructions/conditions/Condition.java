@@ -5,7 +5,7 @@ import com.gomez_juan_lopez_javier.TermParser;
 import com.gomez_juan_lopez_javier.terms.Term;
 
 public abstract class Condition {
-	private Term term1, term2;
+	protected Term term1, term2;
 	//protected ConditionalJump cj
 	
 	public Condition parse(String t1, String op, String t2, LexicalParser parser){

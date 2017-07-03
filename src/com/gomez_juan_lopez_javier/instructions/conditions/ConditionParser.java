@@ -11,7 +11,7 @@ public class ConditionParser {
 	public static Condition parse(String []words, LexicalParser lexParse){
 		Condition cond = null;
 		for (int i = 0; i < conditions.length; i++) {
-			//cond = conditions[i].parse(words);
+			cond = conditions[i].parse(words[1],words[2],words[3],lexParse);
 			if (cond!= null)
 				break;
 		}
