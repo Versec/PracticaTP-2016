@@ -1,7 +1,11 @@
 package com.gomez_juan_lopez_javier.instructions;
 
 import com.gomez_juan_lopez_javier.LexicalParser;
+import com.gomez_juan_lopez_javier.ParsedProgram;
 import com.gomez_juan_lopez_javier.exceptions.ArrayException;
+import com.gomez_juan_lopez_javier.exceptions.LexicalAnalysisException;
+import com.gomez_juan_lopez_javier.instructions.conditions.Condition;
+import com.gomez_juan_lopez_javier.instructions.conditions.ConditionParser;
 
 /**
  * Clase IfThen:
@@ -14,15 +18,29 @@ import com.gomez_juan_lopez_javier.exceptions.ArrayException;
  */
 
 public class IfThen implements Instruction {
-
+	
+	private Condition condition;
+	private ParsedProgram ifBody;
+	
 	public IfThen() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public IfThen(Condition cond, ParsedProgram body) {
+		this.condition = cond;
+		this.ifBody = body;
+	}
 
 	@Override
-	public Instruction lexParse(String[] words, LexicalParser lexParser) {
-		// TODO Auto-generated method stub
-		return null;
+	public Instruction lexParse(String[] words, LexicalParser lexParser) throws LexicalAnalysisException {
+		if(words.length != 2)
+			return null;
+		Condition cond;
+		cond = ConditionParser.parse(words, lexParser);
+		ParsedProgram wBody = new ParsedProgram();
+		lexParser.lexicalParser(wBody, "ENDIF");		
+		//lexParser.increaseProgramCounter();
+		return new IfThen(cond, wBody);
 	}
 
 	@Override
