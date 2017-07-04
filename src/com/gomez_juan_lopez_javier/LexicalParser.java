@@ -32,7 +32,7 @@ public class LexicalParser {
 				stop = true;
 			}
 			else {
-				System.out.println("PC: " + this.programCounter);
+				//System.out.println("PC: " + this.programCounter);
 				increaseProgramCounter();
 				Instruction instr = InstructionParser.parse(line, this);
 				pProgram.addInstruction(instr);

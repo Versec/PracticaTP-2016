@@ -2,6 +2,7 @@ package com.gomez_juan_lopez_javier.terms;
 
 import com.gomez_juan_lopez_javier.Compiler;
 import com.gomez_juan_lopez_javier.bytecode.ByteCode;
+import com.gomez_juan_lopez_javier.bytecode.one_paramater.Load;
 
 public class Variable implements Term {
 
@@ -28,8 +29,7 @@ public class Variable implements Term {
 
 	@Override
 	public ByteCode compile(Compiler compiler) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Load (compiler.getIndex(this.varName));
 	}
 
 }

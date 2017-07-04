@@ -9,5 +9,5 @@ public interface Instruction {
 	
 	Instruction lexParse(String[] words, LexicalParser lexParser) throws LexicalAnalysisException;
 	
-	void Compile (Compiler compiler)throws ArrayException;
+	void compile (com.gomez_juan_lopez_javier.Compiler compiler)throws ArrayException;
 }

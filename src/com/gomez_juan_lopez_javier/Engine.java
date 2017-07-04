@@ -95,6 +95,14 @@ public class Engine {
 				System.out.println(cadenaComando + ": No se encontro el comando");
 				System.out.println();
 			}
+			if(sProgram != null){
+				System.out.println("Programa fuente almacenado:");
+				System.out.println(this.sProgram.toString());
+			}
+			if(bytecodeProgram != null) {
+				System.out.println("Programa bytecode almacenado:");
+				System.out.println(this.bytecodeProgram.toString());
+			}
 		}
 		sc.close();
 	}
@@ -224,12 +232,14 @@ public class Engine {
 	}
 	
 	private void generateByteCode () throws ArrayException {
-		// TODO Auto-generated method stub
-		
+		Compiler compiler = new Compiler ();
+		compiler.compile(pProgram);
+		this.bytecodeProgram = compiler.getByteCode();
 	}
 
 	private void LexicalAnalysis() throws LexicalAnalysisException {
 		pProgram = new ParsedProgram();
+		//TODO ¿Qué pasa si sProgram es null? Revisar excepciones.
 		LexicalParser lParser = new LexicalParser(sProgram);
 		lParser.lexicalParser(pProgram, "end");
 	}
