@@ -4,7 +4,7 @@ import com.gomez_juan_lopez_javier.CPU;
 import com.gomez_juan_lopez_javier.bytecode.ByteCode;
 
 /**
- * Clase que implementa la instruccion Load. lee de la memoria el valor almacenado en una posicion de memoria
+ * Clase que implementa la instruccion Load. Lee de la memoria el valor almacenado en una posicion de memoria
  * y lo apila en la pila de operandos.
  */
 

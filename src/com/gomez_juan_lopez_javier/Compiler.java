@@ -25,7 +25,7 @@ public class Compiler {
 		//Necesita esto estar inicializado aquí?
 		this.bytecode = new ByteCodeProgram ();
 		this.numVars = 0;
-		this.varTable = new String [100];
+		this.varTable = new String [10];
 	}
 	
 	public void compile (ParsedProgram pProgram) throws ArrayException { //throws exception? cuál?
@@ -45,12 +45,14 @@ public class Compiler {
 	 */
 	public void writeToVarTable (String varName){
 		this.varTable [this.numVars] = varName;
+		this.numVars++;
 	}
 	
 	public int getIndex (String varName) {
 		for (int i = 0; i < varTable.length; i++) {
-			if (varTable [i] == varName);
-			return i;
+			if (varTable [i].equals(varName)) {
+				return i;
+			}
 		}
 		return -1;
 	}

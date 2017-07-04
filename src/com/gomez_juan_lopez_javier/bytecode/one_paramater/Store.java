@@ -4,7 +4,7 @@ import com.gomez_juan_lopez_javier.CPU;
 import com.gomez_juan_lopez_javier.bytecode.ByteCode;
 
 /**
- * Clase que implementa la instruccion Store. escribe en una posicion de memoria el contenido de la cima de 
+ * Clase que implementa la instruccion Store. Escribe en una posicion de memoria el contenido de la cima de 
  * la pila de operandos, y lo elimina de ella.
  */
 

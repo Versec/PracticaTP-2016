@@ -1,6 +1,7 @@
 package com.gomez_juan_lopez_javier.instructions;
 
 import com.gomez_juan_lopez_javier.LexicalParser;
+import com.gomez_juan_lopez_javier.bytecode.Halt;
 import com.gomez_juan_lopez_javier.exceptions.ArrayException;
 
 /**
@@ -30,8 +31,7 @@ public class Return implements Instruction {
 
 	@Override
 	public void compile(com.gomez_juan_lopez_javier.Compiler compiler) throws ArrayException {
-		// TODO Auto-generated method stub
-		
+		compiler.addByteCode(new Halt());
 	}
 
 }
