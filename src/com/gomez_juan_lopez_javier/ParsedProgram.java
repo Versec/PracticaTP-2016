@@ -31,4 +31,12 @@ public class ParsedProgram {
 		programSize++;
 	}
 
+	public int getNumeroInstrucciones() {
+		return this.programSize;
+	}
+
+	public Instruction getInstruction(int i) {
+		return pProgram[i];
+	}
+
 }

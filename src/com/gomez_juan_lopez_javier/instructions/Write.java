@@ -28,7 +28,7 @@ public class Write implements Instruction {
 	}
 
 	@Override
-	public void Compile(Compiler compiler) throws ArrayException {
+	public void compile(com.gomez_juan_lopez_javier.Compiler compiler) throws ArrayException {
 		// TODO Auto-generated method stub
 		
 	}
