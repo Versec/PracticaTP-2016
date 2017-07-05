@@ -3,12 +3,12 @@ package com.gomez_juan_lopez_javier.bytecode.one_paramater.conditional_jumps;
 import com.gomez_juan_lopez_javier.bytecode.ByteCode;
 
 /**
- * Clase que implementa la instruccion IfEq. Compara los dos ultimos numeros en la pila de operandos
- * (borrandolos) y comprueba si son iguales. Si no es asi, el programa salta a la instruccion N. Si lo es
+ * Clase que implementa la instruccion IfEq N. Compara los dos ultimos numeros en la pila de operandos
+ * (borrandolos) y comprueba si son iguales. Si no es asi, el programa salta a la instruccion N. Si sin iguales,
  * continua el flujo normal del programa.
  */
 
-public class IfEq extends ConditionalJumps{
+public class IfEq extends ConditionalJump{
 
 	public IfEq() {}
 

@@ -21,8 +21,14 @@ import com.gomez_juan_lopez_javier.terms.Term;
 
 public class SimpleAssignment implements Instruction {
 	
+	/**
+	 * Nombre de la variable.
+	 */
 	private String varName;
 	
+	/**
+	 * Valor que tiene la variable. Puede ser un numero u otra variable.
+	 */
 	private Term rhs;
 
 	public SimpleAssignment(String varName, Term rhs) {

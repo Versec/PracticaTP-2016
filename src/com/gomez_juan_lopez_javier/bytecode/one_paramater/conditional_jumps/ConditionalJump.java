@@ -7,13 +7,13 @@ import com.gomez_juan_lopez_javier.bytecode.one_paramater.ByteCodeOneParameter;
  * Clase que representa las instrucciones de salto condicional. 
  */
 
-public abstract class ConditionalJumps extends ByteCodeOneParameter{
+public abstract class ConditionalJump extends ByteCodeOneParameter{
 
-	public ConditionalJumps() {		
+	public ConditionalJump() {		
 	}
 
 	
-	public ConditionalJumps(int parseInt) {
+	public ConditionalJump(int parseInt) {
 		super(parseInt);
 	}
 

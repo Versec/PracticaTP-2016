@@ -21,6 +21,9 @@ public class Compiler {
 	 */
 	private int numVars;
 	
+	/**
+	 * Compilador del programa. Inicia el programa ByteCode y la tabla de variables.
+	 */
 	public Compiler() {
 		//Necesita esto estar inicializado aquí?
 		this.bytecode = new ByteCodeProgram ();
@@ -38,6 +41,10 @@ public class Compiler {
 	
 	public void addByteCode(ByteCode b){
 		this.bytecode.writeNextInstruction(b);
+	}
+	
+	public void addByteCodeAt(ByteCode b, int i){
+		this.bytecode.writeInstructionAt(b, i);
 	}
 	
 	/**

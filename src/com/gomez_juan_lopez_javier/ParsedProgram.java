@@ -38,6 +38,7 @@ public class ParsedProgram {
 	public Instruction getInstruction(int i) {
 		return pProgram[i];
 	}
+	
 	/*
 	public String toString(){
 		String pProgramString = "";

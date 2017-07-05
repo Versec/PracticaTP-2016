@@ -7,7 +7,7 @@ import com.gomez_juan_lopez_javier.bytecode.ByteCode;
  * (borrandolos) y comprueba si no son iguales. Si no es asi, el prgrama salta a la instruccion N. Si lo es
  * continua el flujo normal del programa.
  */
-public class IfNeq extends ConditionalJumps{
+public class IfNeq extends ConditionalJump{
 
 	public IfNeq() {}
 	

@@ -15,5 +15,13 @@ public abstract class Condition {
 		return parseOp(term1, op, term2, parser);
 	}
 	
+	public Term getTerm1(){
+		return this.term1;
+	}
+	
+	public Term getTerm2(){
+		return this.term2;
+	}
+	
 	protected abstract Condition parseOp(Term t1, String op, Term t2, LexicalParser parser);
 }

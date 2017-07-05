@@ -2,10 +2,10 @@ package com.gomez_juan_lopez_javier.instructions;
 
 import com.gomez_juan_lopez_javier.LexicalParser;
 import com.gomez_juan_lopez_javier.ParsedProgram;
+import com.gomez_juan_lopez_javier.bytecode.one_paramater.conditional_jumps.*;
 import com.gomez_juan_lopez_javier.exceptions.ArrayException;
 import com.gomez_juan_lopez_javier.exceptions.LexicalAnalysisException;
-import com.gomez_juan_lopez_javier.instructions.conditions.Condition;
-import com.gomez_juan_lopez_javier.instructions.conditions.ConditionParser;
+import com.gomez_juan_lopez_javier.instructions.conditions.*;
 
 /**
  * Clase IfThen:
@@ -46,8 +46,46 @@ public class IfThen implements Instruction {
 
 	@Override
 	public void compile(com.gomez_juan_lopez_javier.Compiler compiler) throws ArrayException {
-		// TODO Auto-generated method stub
 		
+		compiler.addByteCode(this.condition.getTerm1().compile(compiler));
+		compiler.addByteCode(this.condition.getTerm2().compile(compiler));
+		if (this.condition instanceof Equal ){			
+			compiler.addByteCode(new IfEq());
+			int instrACambiar = compiler.getByteCode().getProgramSize() -1;
+			compiler.compile(this.ifBody);	
+			
+			int aDondeSaltar = this.ifBody.getNumeroInstrucciones() + 
+					compiler.getByteCode().getProgramSize() -1;
+			
+			compiler.addByteCodeAt(new IfEq(aDondeSaltar), instrACambiar);		
+		}
+		
+		if (this.condition instanceof Less ){			
+			compiler.addByteCode(new IfLe());
+			int instrACambiar = compiler.getByteCode().getProgramSize() -1;
+			compiler.compile(this.ifBody);	
+			int aDondeSaltar = this.ifBody.getNumeroInstrucciones() + 
+					compiler.getByteCode().getProgramSize() -1;
+			
+			compiler.addByteCodeAt(new IfLe(aDondeSaltar), instrACambiar);
+		}
+		
+		if (this.condition instanceof LessEq ){			
+			compiler.addByteCode(new IfLeq());
+			int instrACambiar = compiler.getByteCode().getProgramSize() -1;
+			compiler.compile(this.ifBody);	
+			int aDondeSaltar = this.ifBody.getNumeroInstrucciones() + 
+					compiler.getByteCode().getProgramSize() -1;
+			compiler.addByteCodeAt(new IfLeq(aDondeSaltar), instrACambiar);
+		}
+		if (this.condition instanceof NotEqual ){			
+			compiler.addByteCode(new IfNeq());
+			int instrACambiar = compiler.getByteCode().getProgramSize() -1;
+			compiler.compile(this.ifBody);	
+			int aDondeSaltar = this.ifBody.getNumeroInstrucciones() + 
+					compiler.getByteCode().getProgramSize() -1;
+			compiler.addByteCodeAt(new IfNeq(aDondeSaltar), instrACambiar);
+		}
 	}
 
 }

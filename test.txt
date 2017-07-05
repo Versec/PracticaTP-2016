@@ -1,2 +1,5 @@
-x = 5
-r = x
+if 2 = 3
+x = 1
+endif
+return
+end
