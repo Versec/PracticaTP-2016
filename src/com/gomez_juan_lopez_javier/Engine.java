@@ -31,7 +31,7 @@ public class Engine {
 	/**
 	 * Programa {@link ByteCodeProgram} a escribir por el usuario.
 	 */
-	private ByteCodeProgram program;
+	private ByteCodeProgram byteCodeProgram;
 	/**
 	 * Primitiva boolean que indica si el engine {@link Engine} ha terminado.
 	 */
@@ -55,7 +55,7 @@ public class Engine {
 	/**
 	 * Objeto {@link ByteCodeProgram} para almacenar el programa Bytecode.
 	 */
-	private ByteCodeProgram bytecodeProgram;
+	//private ByteCodeProgram bytecodeProgram;
 	
 	Compiler compiler;
 	
@@ -73,7 +73,7 @@ public class Engine {
 	 * @throws LexicalAnalysisException 
 	 */
 	public void start () {
-		this.program = new ByteCodeProgram();
+		this.byteCodeProgram = new ByteCodeProgram();
 		this.cpu = new CPU();
 		sc = new java.util.Scanner(System.in); 
 		
@@ -101,9 +101,9 @@ public class Engine {
 				System.out.println("Programa fuente almacenado:");
 				System.out.println(this.sProgram.toString());
 			}
-			if(bytecodeProgram != null) {
+			if(byteCodeProgram != null) {
 				System.out.println("Programa bytecode almacenado:");
-				System.out.println(this.bytecodeProgram.toString());
+				System.out.println(this.byteCodeProgram.toString());
 			}
 		}
 		sc.close();
@@ -122,7 +122,7 @@ public class Engine {
 		
 		System.out.println("Programa almacenado:");
 		System.getProperty("line.separator");
-		System.out.println(this.program.toString());
+		System.out.println(this.byteCodeProgram.toString());
 	}
 	
 	/**
@@ -141,7 +141,7 @@ public class Engine {
 	public void ejecutarRun() {
 		this.cpu = new CPU();
 		System.out.println("Comienza la ejecucion de RUN");
-		this.cpu.programToCPU(program);
+		this.cpu.programToCPU(byteCodeProgram);
 		if(cpu.run()){
 			System.out.println("El estado de la maquina tras ejecutar el programa es:");
 			System.out.println(this.cpu.memoryToString());
@@ -152,7 +152,7 @@ public class Engine {
 		}
 		
 		System.out.println("Programa almacenado: ");
-		System.out.println(this.program.toString());
+		System.out.println(this.byteCodeProgram.toString());
 	}
 	
 	/**
@@ -160,7 +160,7 @@ public class Engine {
 	 */
 	public void ejecutarReset() {
 		System.out.println("Comienza la ejecucion de RESET");
-		this.program = new ByteCodeProgram();
+		this.byteCodeProgram = new ByteCodeProgram();
 	}
 	
 	/**
@@ -170,20 +170,20 @@ public class Engine {
 	 */
 	public void ejecutarReplace(int lineToReplace) {
 		System.out.println("Comienza la ejecucion de REPLACE");
-		if(lineToReplace > program.getProgramSize() || program.readInstructionAt(lineToReplace)== null){
+		if(lineToReplace > byteCodeProgram.getProgramSize() || byteCodeProgram.readInstructionAt(lineToReplace)== null){
 			System.out.println("Comando REPLACE ha fallado. La línea de instruccion indicada a substituir no es valido, o no existe ningún programa en memoria.");
 		}
 		else {
-			System.out.println("Antigua instrucción en la línea " + lineToReplace + ": " + program.readInstructionAt(lineToReplace).toString());
+			System.out.println("Antigua instrucción en la línea " + lineToReplace + ": " + byteCodeProgram.readInstructionAt(lineToReplace).toString());
 			System.out.print("Nueva instruccion? ");
 			String newInstruction = sc.nextLine();
 			ByteCode instruction = ByteCodeParser.parse(newInstruction);
-			if(!program.writeInstructionAt(instruction, lineToReplace)){
+			if(!byteCodeProgram.writeInstructionAt(instruction, lineToReplace)){
 				System.out.println("Comando REPLACE ha fallado. La nueva instruccion no es valida.");
 			}
 		}
 		System.out.println("Programa almacenado: ");
-		System.out.println(this.program.toString());
+		System.out.println(this.byteCodeProgram.toString());
 	}
 	
 	/**
@@ -211,7 +211,7 @@ public class Engine {
 				instruccion = ByteCodeParser.parse(cadenaBytecode);
 				
 				if (instruccion != null){
-					program.writeNextInstruction(instruccion);
+					byteCodeProgram.writeNextInstruction(instruccion);
 				}
 				else{
 					System.out.println("Instruccion incorrecta.");
@@ -236,7 +236,7 @@ public class Engine {
 	private void generateByteCode () throws ArrayException {
 		this.compiler = new Compiler ();
 		compiler.compile(pProgram);
-		this.bytecodeProgram = compiler.getByteCode();
+		this.byteCodeProgram = compiler.getByteCode();
 	}
 
 	private void LexicalAnalysis() throws LexicalAnalysisException {

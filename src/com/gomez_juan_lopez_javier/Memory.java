@@ -37,7 +37,7 @@ public class Memory {
 			this.memory = new Integer [pos*2];
 			System.arraycopy(auxMemory, 0, memory, 0, auxMemory.length);
 		}
-		if(pos >0){
+		if(pos >=0){
 			this.memory[pos] =  value;
 			return true;
 		}
