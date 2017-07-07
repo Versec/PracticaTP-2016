@@ -58,7 +58,7 @@ public class SimpleAssignment implements Instruction {
 		ByteCode bytecode = this.rhs.compile(compiler);		
 		compiler.addByteCode(bytecode);
 		compiler.writeToVarTable(this.varName);
-		compiler.addByteCode(new Store(compiler.getIndex(this.varName)));
+		compiler.addByteCode(new Store(compiler.getVarIndex(this.varName)));
 	}
 
 

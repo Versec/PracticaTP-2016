@@ -1,5 +1,3 @@
-if 2 = 3
 x = 1
-endif
-return
+write x
 end

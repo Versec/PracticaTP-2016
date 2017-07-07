@@ -29,6 +29,6 @@ public class Sub extends Arithmetics{
 
 	@Override
 	public String toString() {
-		return "Sub";
+		return "SUB";
 	}
 }

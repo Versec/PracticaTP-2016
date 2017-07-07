@@ -29,7 +29,12 @@ public class Variable implements Term {
 
 	@Override
 	public ByteCode compile(Compiler compiler) {
-		return new Load (compiler.getIndex(this.varName));
+		return new Load (compiler.getVarIndex(this.varName));
+	}
+	
+	@Override
+	public String toString (){
+		return this.varName;
 	}
 
 }

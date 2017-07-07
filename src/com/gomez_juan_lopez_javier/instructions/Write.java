@@ -2,6 +2,8 @@ package com.gomez_juan_lopez_javier.instructions;
 
 import com.gomez_juan_lopez_javier.LexicalParser;
 import com.gomez_juan_lopez_javier.TermParser;
+import com.gomez_juan_lopez_javier.bytecode.Out;
+import com.gomez_juan_lopez_javier.bytecode.one_paramater.Load;
 import com.gomez_juan_lopez_javier.exceptions.ArrayException;
 import com.gomez_juan_lopez_javier.terms.Term;
 
@@ -29,7 +31,8 @@ public class Write implements Instruction {
 
 	@Override
 	public void compile(com.gomez_juan_lopez_javier.Compiler compiler) throws ArrayException {
-		// TODO Auto-generated method stub
+		compiler.addByteCode(new Load(compiler.getVarIndex(this.varToWrite.toString())));
+		compiler.addByteCode(new Out());
 		
 	}
 

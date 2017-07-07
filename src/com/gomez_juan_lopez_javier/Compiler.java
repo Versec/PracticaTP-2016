@@ -55,7 +55,13 @@ public class Compiler {
 		this.numVars++;
 	}
 	
-	public int getIndex (String varName) {
+	/**
+	 * Busca el índice de una variable en la tabla. No comprueba si la variable existe.
+	 * 
+	 * @param varName
+	 * @return
+	 */
+	public int getVarIndex (String varName) {
 		for (int i = 0; i < varTable.length; i++) {
 			if (varTable [i].equals(varName)) {
 				return i;

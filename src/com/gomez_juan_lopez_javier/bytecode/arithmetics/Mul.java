@@ -29,7 +29,7 @@ public class Mul extends Arithmetics{
 
 	@Override
 	public String toString() {
-		return "Mul";
+		return "MUL";
 	}
 
 }

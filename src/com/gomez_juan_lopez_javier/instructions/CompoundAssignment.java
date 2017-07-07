@@ -2,6 +2,8 @@ package com.gomez_juan_lopez_javier.instructions;
 
 import com.gomez_juan_lopez_javier.LexicalParser;
 import com.gomez_juan_lopez_javier.TermParser;
+import com.gomez_juan_lopez_javier.bytecode.arithmetics.*;
+import com.gomez_juan_lopez_javier.bytecode.one_paramater.Store;
 import com.gomez_juan_lopez_javier.exceptions.ArrayException;
 import com.gomez_juan_lopez_javier.terms.Term;
 
@@ -56,8 +58,20 @@ public class CompoundAssignment implements Instruction{
 
 	@Override
 	public void compile(com.gomez_juan_lopez_javier.Compiler compiler) throws ArrayException {
-		// TODO Auto-generated method stub
+		compiler.addByteCode(this.term1.compile(compiler));
+		compiler.addByteCode(this.term2.compile(compiler));
 		
+		if(this.operator.equals("+"))
+			compiler.addByteCode(new Add()); 
+		if(this.operator.equals("-"))
+			compiler.addByteCode(new Sub());
+		if(this.operator.equals("*"))
+			compiler.addByteCode(new Mul());
+		if(this.operator.equals("/"))
+			compiler.addByteCode(new Div());	
+			
+		compiler.writeToVarTable(this.varName);
+		compiler.addByteCode(new Store(compiler.getVarIndex(this.varName)));
 	}
 
 }

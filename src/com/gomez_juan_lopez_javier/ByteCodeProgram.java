@@ -16,7 +16,7 @@ public class ByteCodeProgram {
 	/**
 	 * Dimension maxima del programa.
 	 */
-	private final int MAX_PROGRAM_SIZE = 10;
+	private final int MAX_PROGRAM_SIZE = 15;
 	/**
 	 * Programa con la clase ByteCode.
 	 */

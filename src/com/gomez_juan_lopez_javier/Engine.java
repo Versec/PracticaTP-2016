@@ -57,6 +57,8 @@ public class Engine {
 	 */
 	private ByteCodeProgram bytecodeProgram;
 	
+	Compiler compiler;
+	
 	/**
 	 * Constructor por defecto de {@link Engine}.
 	 */
@@ -232,7 +234,7 @@ public class Engine {
 	}
 	
 	private void generateByteCode () throws ArrayException {
-		Compiler compiler = new Compiler ();
+		this.compiler = new Compiler ();
 		compiler.compile(pProgram);
 		this.bytecodeProgram = compiler.getByteCode();
 	}

@@ -29,7 +29,7 @@ public class Div extends Arithmetics{
 
 	@Override
 	public String toString() {
-		return "Div";
+		return "DIV";
 	}
 
 }
