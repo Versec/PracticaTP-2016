@@ -31,15 +31,18 @@ public class SimpleAssignment implements Instruction {
 	 */
 	private Term rhs;
 
+	
 	public SimpleAssignment(String varName, Term rhs) {
 		this.varName = varName;
 		this.rhs = rhs;
 	}
 	
+	
 	public SimpleAssignment() {
 		// TODO Auto-generated constructor stub
 	}
 
+	
 	@Override
 	public Instruction lexParse(String[] words, LexicalParser lexParser) {
 		if (words.length != 3 )
@@ -49,16 +52,16 @@ public class SimpleAssignment implements Instruction {
 		Term rhs = TermParser.parse(words[2]);
 		if (rhs == null)
 			return null;
-		//lexParser.increaseProgramCounter();
 		return new SimpleAssignment (words[0], rhs);
 	}
 
+	
 	@Override
 	public void compile(Compiler compiler) throws ArrayException {
 		ByteCode bytecode = this.rhs.compile(compiler);		
-		compiler.addByteCode(bytecode);
+		compiler.addNextByteCode(bytecode);
 		compiler.writeToVarTable(this.varName);
-		compiler.addByteCode(new Store(compiler.getVarIndex(this.varName)));
+		compiler.addNextByteCode(new Store(compiler.getVarIndex(this.varName)));
 	}
 
 

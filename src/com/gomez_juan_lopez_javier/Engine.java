@@ -7,6 +7,8 @@ import java.util.Scanner;
 import com.gomez_juan_lopez_javier.bytecode.ByteCode;
 import com.gomez_juan_lopez_javier.commands.Command;
 import com.gomez_juan_lopez_javier.exceptions.ArrayException;
+import com.gomez_juan_lopez_javier.exceptions.DivByZeroException;
+import com.gomez_juan_lopez_javier.exceptions.ExecutionErrorException;
 import com.gomez_juan_lopez_javier.exceptions.LexicalAnalysisException;
 
 /**
@@ -20,42 +22,59 @@ import com.gomez_juan_lopez_javier.exceptions.LexicalAnalysisException;
  */
 
 public class Engine {
+	
 	/**
 	 * Representa un comando {@link Command}. 
 	 */
 	public Command comando;
+	
+	
 	/**
 	 * Representa una instruccion {@link ByteCode}.
 	 */
 	public ByteCode instruccion;
+	
+	
 	/**
 	 * Programa {@link ByteCodeProgram} a escribir por el usuario.
 	 */
 	private ByteCodeProgram byteCodeProgram;
+	
+	
 	/**
 	 * Primitiva boolean que indica si el engine {@link Engine} ha terminado.
 	 */
 	private boolean end;
+	
+	
 	/**
 	 * Objeto {@link CPU} que representa a la CPU que ejecuta laas instrucciones {@link ByteCode}.
 	 */
 	private CPU cpu;
+	
+	
 	/**
 	 * Objeto {@link java.util.Scanner} utilizado para leer los comandos introducidos por el usuario.
 	 */
 	private java.util.Scanner sc;
+	
+	
 	/**
 	 * Objeto {@link SourceProgram} utilizado para almacenar el programa fuente que se carga del fichero.
 	 */
 	private SourceProgram sProgram;
+	
+	
 	/**
 	 * Objeto {@link ParsedProgram} para almacenar el programa parseado.
 	 */
 	private ParsedProgram pProgram;
+	
 	/**
 	 * Objeto {@link ByteCodeProgram} para almacenar el programa Bytecode.
 	 */
 	//private ByteCodeProgram bytecodeProgram;
+	
 	
 	Compiler compiler;
 	
@@ -69,10 +88,11 @@ public class Engine {
 	/**
 	 * Inicia el motor {@link Engine} y lee los comandos introducidos y los parsea convenientemente. Si el comando
 	 * introducido no es correcto se mostrara un error.
+	 * @throws ExecutionErrorException 
 	 * @throws ArrayException 
 	 * @throws LexicalAnalysisException 
 	 */
-	public void start () {
+	public void start () throws ExecutionErrorException {
 		this.byteCodeProgram = new ByteCodeProgram();
 		this.cpu = new CPU();
 		sc = new java.util.Scanner(System.in); 
@@ -87,9 +107,21 @@ public class Engine {
 			if (comando != null) {
 				try {
 					comando.execute(this);
-				} catch (LexicalAnalysisException | ArrayException e) {
-					System.out.println("Ha ocurrido un error.");
-					//e.printStackTrace();
+				} 
+				catch(ExecutionErrorException e) {
+					try {
+						this.cpu.printErrorLine();
+					} catch (ArrayException e1) {
+						e1.printStackTrace();
+					}
+					System.out.println(e.getLocalizedMessage());
+				}
+				catch (ArrayException e) {
+					System.out.println(e.getLocalizedMessage());
+				}
+				
+				catch (LexicalAnalysisException e) {
+					System.out.println(e.getLocalizedMessage());
 				}
 			}
 			else {
@@ -110,49 +142,31 @@ public class Engine {
 	}
 	
 	/**
-	 * Metodo para ejecutar Bytecode.
-	 */
-	public void ejecutarAddByteCode() {
-		System.out.println("Comienza la ejecucion de BYTECODE");
-		System.getProperty("line.separator");
-		System.out.println("Introduce el bytecode. Una instruccion por linea:");
-		System.getProperty("line.separator");
-		
-		readByteCodeProgram();
-		
-		System.out.println("Programa almacenado:");
-		System.getProperty("line.separator");
-		System.out.println(this.byteCodeProgram.toString());
-	}
-	
-	/**
 	 * Metodo para mostrar ejecutar y mostrar HELP.
 	 * 
 	 * @return verdadero si ha mostrado la ayuda.
 	 */
 	public boolean ejecutarHelp() {
+		System.out.println();
 		CommandParser.showHelp();
+		System.out.println();
 		return true;
 	}
 	
 	/**
 	 * Metodo para ejecutar el comando RUN.
+	 * @throws ExecutionErrorException 
+	 * @throws ArrayException 
 	 */
-	public void ejecutarRun() {
+	public void ejecutarRun() throws ExecutionErrorException, ArrayException {
 		this.cpu = new CPU();
-		System.out.println("Comienza la ejecucion de RUN");
+		System.out.println("Comienza la ejecucion de RUN \n");
 		this.cpu.programToCPU(byteCodeProgram);
 		if(cpu.run()){
 			System.out.println("El estado de la maquina tras ejecutar el programa es:");
 			System.out.println(this.cpu.memoryToString());
 			System.out.println(this.cpu.stackToString()+ "\n");
 		}
-		else{
-			System.out.println("ERROR: Ejecucion incorrecta del programa.");
-		}
-		
-		System.out.println("Programa almacenado: ");
-		System.out.println(this.byteCodeProgram.toString());
 	}
 	
 	/**
@@ -167,19 +181,22 @@ public class Engine {
 	 * Metodo para ejecutar el comando REPLACE.
 	 * 
 	 * @param lineToReplace Posicion en el programa de la instruccion {@link ByteCode} a reemplazar.
+	 * @throws ArrayException 
 	 */
-	public void ejecutarReplace(int lineToReplace) {
+	public void ejecutarReplace(int lineToReplace) throws ArrayException {
 		System.out.println("Comienza la ejecucion de REPLACE");
 		if(lineToReplace > byteCodeProgram.getProgramSize() || byteCodeProgram.readInstructionAt(lineToReplace)== null){
-			System.out.println("Comando REPLACE ha fallado. La línea de instruccion indicada a substituir no es valido, o no existe ningún programa en memoria.");
+			throw new ArrayException ("Comando REPLACE ha fallado. La linea de instruccion indicada a substituir no"
+					+ " es valida, o no existe ningun programa en memoria.");
 		}
 		else {
-			System.out.println("Antigua instrucción en la línea " + lineToReplace + ": " + byteCodeProgram.readInstructionAt(lineToReplace).toString());
+			System.out.println("Antigua instruccion en la linea " + lineToReplace + ": " 
+					+ byteCodeProgram.readInstructionAt(lineToReplace).toString());
 			System.out.print("Nueva instruccion? ");
 			String newInstruction = sc.nextLine();
 			ByteCode instruction = ByteCodeParser.parse(newInstruction);
 			if(!byteCodeProgram.writeInstructionAt(instruction, lineToReplace)){
-				System.out.println("Comando REPLACE ha fallado. La nueva instruccion no es valida.");
+				throw new ArrayException ("Comando REPLACE ha fallado. La nueva instruccion no es valida.");
 			}
 		}
 		System.out.println("Programa almacenado: ");
@@ -200,8 +217,9 @@ public class Engine {
 	 * 
 	 * @return true si la instruccion es correcta y la maquina ha podido guardarla correctamente. False en cualquier
 	 * otro caso.
+	 * @throws ArrayException 
 	 */
-	public boolean readByteCodeProgram() {
+	public boolean readByteCodeProgram() throws ArrayException {
 		boolean end = false;
 		
 		while(!end){
@@ -228,24 +246,26 @@ public class Engine {
 			this.LexicalAnalysis();
 			this.generateByteCode();
 		} catch (LexicalAnalysisException | ArrayException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getLocalizedMessage());
 		}
 	}
 	
-	private void generateByteCode () throws ArrayException {
+	
+	private void generateByteCode () throws ArrayException, LexicalAnalysisException {
 		this.compiler = new Compiler ();
 		compiler.compile(pProgram);
 		this.byteCodeProgram = compiler.getByteCode();
 	}
 
-	private void LexicalAnalysis() throws LexicalAnalysisException {
+	
+	private void LexicalAnalysis() throws LexicalAnalysisException, ArrayException {
 		pProgram = new ParsedProgram();
 		//TODO �Qu� pasa si sProgram es null? Revisar excepciones.
 		LexicalParser lParser = new LexicalParser(sProgram);
 		lParser.lexicalParser(pProgram, "end");
 	}
 
+	
 	/**
 	 * Metodo para cargar el programa fuente de un fichero.
 	 * 
@@ -263,7 +283,8 @@ public class Engine {
 			while(sourceScanner.hasNextLine()){
 				lineProgram = sourceScanner.nextLine();
 				if(!sProgram.writeNextInstruction(lineProgram)){
-					throw new ArrayException();	
+					throw new ArrayException("Se ha llenado la memoria reservada para el programa fuente: \n"
+							+ "MAX_PROGRAM_SIZE: " + this.sProgram.getMaxProgramSize());	
 				}
 			}
 		} catch (FileNotFoundException e) {

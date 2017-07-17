@@ -9,16 +9,22 @@ import com.gomez_juan_lopez_javier.terms.Term;
 
 public class Write implements Instruction {
 	
+	/**
+	 * Variable a escribir.
+	 */
 	private Term varToWrite;
+	
 	
 	public Write() {
 		// TODO Auto-generated constructor stub
 	}
 
+	
 	public Write(Term varToWrite) {
 		this.varToWrite = varToWrite;
 	}
 
+	
 	@Override
 	public Instruction lexParse(String[] words, LexicalParser lexParser) {
 		if (words.length != 2)
@@ -31,8 +37,8 @@ public class Write implements Instruction {
 
 	@Override
 	public void compile(com.gomez_juan_lopez_javier.Compiler compiler) throws ArrayException {
-		compiler.addByteCode(new Load(compiler.getVarIndex(this.varToWrite.toString())));
-		compiler.addByteCode(new Out());
+		compiler.addNextByteCode(new Load(compiler.getVarIndex(this.varToWrite.toString())));
+		compiler.addNextByteCode(new Out());
 		
 	}
 

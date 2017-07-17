@@ -2,6 +2,7 @@ package com.gomez_juan_lopez_javier.bytecode.one_paramater;
 
 import com.gomez_juan_lopez_javier.CPU;
 import com.gomez_juan_lopez_javier.bytecode.ByteCode;
+import com.gomez_juan_lopez_javier.exceptions.StackException;
 
 /**
  * Clase que implementa la instruccion Store. Escribe en una posicion de memoria el contenido de la cima de 
@@ -26,7 +27,7 @@ public class Store extends ByteCodeOneParameter{
 	}
 	
 	@Override
-	public boolean execute(CPU cpu) {
+	public boolean execute(CPU cpu) throws StackException {
 		return cpu.store(this);
 	}
 	

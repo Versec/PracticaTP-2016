@@ -2,6 +2,7 @@ package com.gomez_juan_lopez_javier.bytecode.one_paramater;
 
 import com.gomez_juan_lopez_javier.CPU;
 import com.gomez_juan_lopez_javier.bytecode.ByteCode;
+import com.gomez_juan_lopez_javier.exceptions.StackException;
 
 /**
  * Clase que implementa la instruccion Load N. Lee de la memoria el valor almacenado en la posicion de memoria N
@@ -26,7 +27,7 @@ public class Load extends ByteCodeOneParameter{
 	}
 
 	@Override
-	public boolean execute(CPU cpu) {
+	public boolean execute(CPU cpu) throws StackException {
 		if (cpu.load(this))
 			return true;
 		

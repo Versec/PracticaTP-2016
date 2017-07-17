@@ -31,7 +31,7 @@ public class Return implements Instruction {
 
 	@Override
 	public void compile(com.gomez_juan_lopez_javier.Compiler compiler) throws ArrayException {
-		compiler.addByteCode(new Halt());
+		compiler.addNextByteCode(new Halt());
 	}
 
 }

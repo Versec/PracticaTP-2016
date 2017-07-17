@@ -2,6 +2,7 @@ package com.gomez_juan_lopez_javier.bytecode.one_paramater.conditional_jumps;
 
 import com.gomez_juan_lopez_javier.CPU;
 import com.gomez_juan_lopez_javier.bytecode.one_paramater.ByteCodeOneParameter;
+import com.gomez_juan_lopez_javier.exceptions.StackException;
 
 /**
  * Clase que representa las instrucciones de salto condicional. 
@@ -18,15 +19,15 @@ public abstract class ConditionalJump extends ByteCodeOneParameter{
 	}
 
 	@Override
-	public boolean execute(CPU cpu) {
+	public boolean execute(CPU cpu) throws StackException {
 		if(cpu.getStackSize()>=2){
 			int cima = cpu.pop();
 			int subcima = cpu.pop();
 			if(compare(cima, subcima)){
-				cpu.setProgramCounter(this.param-1);
+				//No hacer nada e ir a la siguiente instruccion (PC+1)
 			}
 			else {
-				//No hacer nada e ir a la siguiente instruccion (PC+1)
+				cpu.setProgramCounter(this.param-1);
 			}
 			return true;
 		}

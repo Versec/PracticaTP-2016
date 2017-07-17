@@ -1,5 +1,6 @@
 package com.gomez_juan_lopez_javier;
 
+import com.gomez_juan_lopez_javier.exceptions.ArrayException;
 import com.gomez_juan_lopez_javier.exceptions.LexicalAnalysisException;
 import com.gomez_juan_lopez_javier.instructions.Instruction;
 
@@ -23,8 +24,11 @@ public class LexicalParser {
 		this.sProgram = sprogram;
 	}
 	
-	public void lexicalParser(ParsedProgram pProgram, String stopKey) throws LexicalAnalysisException {
-		boolean stop = false;;
+	public void lexicalParser(ParsedProgram pProgram, String stopKey) throws LexicalAnalysisException, ArrayException {
+		boolean stop = false;
+		if(!this.sProgram.getInstructionAt(sProgram.getProgramSize()-1).equals("end")){
+			throw new LexicalAnalysisException ("Falta terminación end. \n");
+		}
 		while(programCounter < sProgram.getProgramSize() && !stop){
 			String line = sProgram.getInstructionAt(programCounter);
 			if(line.equalsIgnoreCase(stopKey)){

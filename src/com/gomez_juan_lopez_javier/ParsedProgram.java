@@ -1,5 +1,6 @@
 package com.gomez_juan_lopez_javier;
 
+import com.gomez_juan_lopez_javier.exceptions.ArrayException;
 import com.gomez_juan_lopez_javier.instructions.Instruction;
 
 /**
@@ -26,17 +27,27 @@ public class ParsedProgram {
 		this.programSize = 0;
 	}
 
-	public void addInstruction(Instruction instr) {
-		this.pProgram[programSize] = instr;
-		programSize++;
+	public void addInstruction(Instruction instr) throws ArrayException {
+		try {
+			this.pProgram[programSize] = instr;
+			programSize++;
+		}
+		catch (IndexOutOfBoundsException e){
+			throw new ArrayException ("Posición de Instrucción inválida. \n");
+		}
 	}
 
 	public int getNumeroInstrucciones() {
 		return this.programSize;
 	}
 
-	public Instruction getInstruction(int i) {
-		return pProgram[i];
+	public Instruction getInstruction(int i) throws ArrayException {
+		try{
+			return pProgram[i];
+		}
+		catch (IndexOutOfBoundsException e){
+			throw new ArrayException ("Posición de Instrucción inválida. \n");
+		}
 	}
 	
 	/*

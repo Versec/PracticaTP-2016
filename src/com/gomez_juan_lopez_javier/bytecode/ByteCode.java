@@ -1,6 +1,7 @@
 package com.gomez_juan_lopez_javier.bytecode;
 
 import com.gomez_juan_lopez_javier.CPU;
+import com.gomez_juan_lopez_javier.exceptions.ExecutionErrorException;
 
 /**
  * Clase abstracta Bytecode:
@@ -29,16 +30,17 @@ public abstract class ByteCode {
 	 * Ejecuta una instruccion {@link ByteCode}. Devolvera true si la instruccion se ejecuta correctamente.
 	 * En cualquier otro caso, devolvera false.
 	 * 
-	 * @param cpu La CPU de lamáquina virtual.
+	 * @param cpu La CPU de la maquina virtual.
 	 * 
 	 * @return true si la instruccion se ha ejecutado correctamente. Si no es el caso, false.
+	 * @throws ExecutionErrorException 
 	 */
-	public abstract boolean execute(CPU cpu);
+	public abstract boolean execute(CPU cpu) throws ExecutionErrorException;
 	
 	/**
 	 * Devuelve una representacion como String de la isntruccion {@link ByteCode}.
 	 * 
-	 * @return Representación de la instruccion en un objeto {@link String}
+	 * @return Representacion de la instruccion en un objeto {@link String}
 	 */
 	public abstract String toString();
 	

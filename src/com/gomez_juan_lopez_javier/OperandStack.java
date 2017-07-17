@@ -1,5 +1,7 @@
 package com.gomez_juan_lopez_javier;
 
+import com.gomez_juan_lopez_javier.exceptions.StackException;
+
 /**
  * Clase: OperandStack
  * 
@@ -31,10 +33,16 @@ public class OperandStack {
 	 * Inserta un nuevo operando en la pila y aumenta {@link OperandStack#stackCounter} en 1.
 	 * 
 	 * @param i Operando a introducir.
+	 * @throws StackException 
 	 */
-	public void push(int i){
-		this.stack[stackCounter]=i;
-		stackCounter++;
+	public void push(int i) throws StackException  {
+		try{
+			this.stack[stackCounter]=i;
+			stackCounter++;
+		}
+		catch(Exception ArrayIndexOutOfBoundsException){
+			throw new StackException ("Tamaño de pila insuficiente. \n");
+		}
 	}
 	
 	/**
@@ -42,7 +50,10 @@ public class OperandStack {
 	 * 
 	 * @return Operando a extraer.
 	 */
-	public int pop(){
+	public int pop() throws StackException{
+		if (this.stackCounter == 0){
+			throw new StackException ("Tamaño de pila insuficiente. \n");
+		}
 		stackCounter--;
 		return stack[stackCounter];
 	}

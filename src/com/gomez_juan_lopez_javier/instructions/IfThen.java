@@ -19,38 +19,60 @@ import com.gomez_juan_lopez_javier.instructions.conditions.*;
 
 public class IfThen implements Instruction {
 	
+	/**
+	 * Condicion de la instruccion IF.
+	 */
 	private Condition condition;
+	
+	/**
+	 * Cuerpo interno.
+	 */
 	private ParsedProgram ifBody;
+	
 	
 	public IfThen() {
 		// TODO Auto-generated constructor stub
 	}
+	
 	
 	public IfThen(Condition cond, ParsedProgram body) {
 		this.condition = cond;
 		this.ifBody = body;
 	}
 
+	
 	@Override
-	public Instruction lexParse(String[] words, LexicalParser lexParser) throws LexicalAnalysisException {
+	public Instruction lexParse(String[] words, LexicalParser lexParser) throws LexicalAnalysisException, ArrayException {
 		if(words.length != 4)
 			return null;
-		Condition cond;
-		cond = ConditionParser.parse(words, lexParser);
+		if (!words[0].equals("if")){
+			return null;
+		}
+		
+		Condition cond = ConditionParser.parse(words, lexParser);
 		ParsedProgram wBody = new ParsedProgram();
 		lexParser.lexicalParser(wBody, "ENDIF");		
-		//lexParser.increaseProgramCounter();
 		return new IfThen(cond, wBody);
 	}
 
-
+	
+	/**
+	 * @throws LexicalAnalysisException 
+	 * 
+	 */
 	@Override
-	public void compile(com.gomez_juan_lopez_javier.Compiler compiler) throws ArrayException {
+	public void compile(com.gomez_juan_lopez_javier.Compiler compiler) throws ArrayException, LexicalAnalysisException {
+		try {
+		//Compilación de los terminos a comparar.
+		compiler.addNextByteCode(this.condition.getTerm1().compile(compiler));
+		compiler.addNextByteCode(this.condition.getTerm2().compile(compiler));
 		
-		compiler.addByteCode(this.condition.getTerm1().compile(compiler));
-		compiler.addByteCode(this.condition.getTerm2().compile(compiler));
+		} catch(NullPointerException e){
+			throw new LexicalAnalysisException ("Error en la compilación de una condición IF. \n");
+		}
+			 
 		if (this.condition instanceof Equal ){			
-			compiler.addByteCode(new IfEq());
+			compiler.addNextByteCode(new IfEq());
 			int instrACambiar = compiler.getByteCode().getProgramSize() -1;
 			compiler.compile(this.ifBody);	
 			
@@ -61,7 +83,7 @@ public class IfThen implements Instruction {
 		}
 		
 		if (this.condition instanceof Less ){			
-			compiler.addByteCode(new IfLe());
+			compiler.addNextByteCode(new IfLe());
 			int instrACambiar = compiler.getByteCode().getProgramSize() -1;
 			compiler.compile(this.ifBody);	
 			int aDondeSaltar = this.ifBody.getNumeroInstrucciones() + 
@@ -71,21 +93,23 @@ public class IfThen implements Instruction {
 		}
 		
 		if (this.condition instanceof LessEq ){			
-			compiler.addByteCode(new IfLeq());
+			compiler.addNextByteCode(new IfLeq());
 			int instrACambiar = compiler.getByteCode().getProgramSize() -1;
 			compiler.compile(this.ifBody);	
 			int aDondeSaltar = this.ifBody.getNumeroInstrucciones() + 
 					compiler.getByteCode().getProgramSize() -1;
 			compiler.addByteCodeAt(new IfLeq(aDondeSaltar), instrACambiar);
 		}
+		
 		if (this.condition instanceof NotEqual ){			
-			compiler.addByteCode(new IfNeq());
+			compiler.addNextByteCode(new IfNeq());
 			int instrACambiar = compiler.getByteCode().getProgramSize() -1;
 			compiler.compile(this.ifBody);	
 			int aDondeSaltar = this.ifBody.getNumeroInstrucciones() + 
 					compiler.getByteCode().getProgramSize() -1;
 			compiler.addByteCodeAt(new IfNeq(aDondeSaltar), instrACambiar);
 		}
+	
 	}
 
 }

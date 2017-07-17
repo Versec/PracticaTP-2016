@@ -58,20 +58,20 @@ public class CompoundAssignment implements Instruction{
 
 	@Override
 	public void compile(com.gomez_juan_lopez_javier.Compiler compiler) throws ArrayException {
-		compiler.addByteCode(this.term1.compile(compiler));
-		compiler.addByteCode(this.term2.compile(compiler));
+		compiler.addNextByteCode(this.term1.compile(compiler));
+		compiler.addNextByteCode(this.term2.compile(compiler));
 		
 		if(this.operator.equals("+"))
-			compiler.addByteCode(new Add()); 
+			compiler.addNextByteCode(new Add()); 
 		if(this.operator.equals("-"))
-			compiler.addByteCode(new Sub());
+			compiler.addNextByteCode(new Sub());
 		if(this.operator.equals("*"))
-			compiler.addByteCode(new Mul());
+			compiler.addNextByteCode(new Mul());
 		if(this.operator.equals("/"))
-			compiler.addByteCode(new Div());	
+			compiler.addNextByteCode(new Div());	
 			
 		compiler.writeToVarTable(this.varName);
-		compiler.addByteCode(new Store(compiler.getVarIndex(this.varName)));
+		compiler.addNextByteCode(new Store(compiler.getVarIndex(this.varName)));
 	}
 
 }

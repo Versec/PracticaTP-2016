@@ -77,7 +77,10 @@ public class Memory {
 		
 		for (int i = 0; i < memory.length; i++) {
 			if (memory[i]!= null){
-				s = "[" + i +"]: "+ memory [i] + " ";
+				if(i == 0 ){
+					s = "";
+				}
+				s = s + "[" + i +"]: "+ memory [i] + " ";
 			}
 		}
 		return s;

@@ -1,5 +1,7 @@
 package com.gomez_juan_lopez_javier;
 
+import com.gomez_juan_lopez_javier.exceptions.ArrayException;
+
 /**
  * Clase SourceProgram:
  * 
@@ -37,20 +39,23 @@ public class SourceProgram {
 		this.programSize = 0;
 	}
 	
+	
 	/**
 	 * Escribe una instruccion al final del programa fuente y e incrementa el contador de la dimension del programa,
 	 * {@link SourceProgram#programSize} en 1.
 	 * 
 	 * @param instruction Instruccion de tipo String a escribir.
+	 * @throws ArrayException 
 	 */
-	public boolean writeNextInstruction(String instruction){
-		if (programSize < MAX_PROGRAM_SIZE){
+	public boolean writeNextInstruction(String instruction) throws ArrayException{
+		try {
 			sProgram[programSize]= instruction;
 			programSize++;
 			return true;
+		} 
+		catch (IndexOutOfBoundsException e){
+			throw new ArrayException ();
 		}
-		else
-			return false;
 	}
 	
 	
@@ -65,17 +70,6 @@ public class SourceProgram {
 	
 	
 	/**
-	 * Metodo que comprueba si se puede escribir la siguiente instruccion.
-	 * @return True si se puede escribir la siguiente instruccion. False en caso contrario.
-	 */
-	public boolean canWrite(){
-		if (programSize < MAX_PROGRAM_SIZE)
-			return true;
-		else
-			return false;
-	}
-	
-	/**
 	 * Convierte todas las instrucciones del programa en un objeto {@link String}.
 	 * 
 	 * @return Representacion en un objeto {@link String} con las instrucciones programadas.
@@ -88,12 +82,28 @@ public class SourceProgram {
 		return s;
 	}
 	
-	public int getNumeroInstrucciones(){
-		
-		return 0;
+	/**
+	 * 
+	 * @return
+	 */
+	public int getMaxProgramSize(){
+		return SourceProgram.MAX_PROGRAM_SIZE;
 	}
 
-	public String getInstructionAt(int programCounter) {
-		return this.sProgram[programCounter];
+	
+	/**
+	 * 
+	 * 
+	 * @param programCounter
+	 * @return
+	 * @throws ArrayException
+	 */
+	public String getInstructionAt(int programCounter) throws ArrayException {
+		try {
+			return this.sProgram[programCounter];
+		}
+		catch (IndexOutOfBoundsException e){
+			throw new ArrayException ();
+		}
 	}
 }

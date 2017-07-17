@@ -2,6 +2,7 @@ package com.gomez_juan_lopez_javier.bytecode.arithmetics;
 
 import com.gomez_juan_lopez_javier.CPU;
 import com.gomez_juan_lopez_javier.bytecode.ByteCode;
+import com.gomez_juan_lopez_javier.exceptions.StackException;
 
 /**
  * Clase que implementa la instruccion Sub. Resta los dos primeros numeros de la cima de la pila y vuelve a guardar el
@@ -20,7 +21,7 @@ public class Sub extends Arithmetics{
 	}
 
 	@Override
-	public boolean execute(CPU cpu) {
+	public boolean execute(CPU cpu) throws StackException {
 		if(cpu.sub())
 			return true;
 		else	

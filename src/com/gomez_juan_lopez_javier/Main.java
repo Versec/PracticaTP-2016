@@ -1,6 +1,7 @@
 package com.gomez_juan_lopez_javier;
 
 import com.gomez_juan_lopez_javier.exceptions.ArrayException;
+import com.gomez_juan_lopez_javier.exceptions.ExecutionErrorException;
 import com.gomez_juan_lopez_javier.exceptions.LexicalAnalysisException;
 
 /**
@@ -17,10 +18,11 @@ public class Main {
 	 * Arranca el motor del programa llamando a {@link Engine#start()}.
 	 * 
 	 * @param args No utilizado.
+	 * @throws ExecutionErrorException 
 	 * @throws ArrayException 
 	 * @throws LexicalAnalysisException 
 	 */
-	public static void main(String[] args){		
+	public static void main(String[] args) throws ExecutionErrorException{		
 		Engine engine = new Engine();
 		engine.start();
 	}
